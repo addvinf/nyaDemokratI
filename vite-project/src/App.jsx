@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div>
-      <p>Hej! Nu är sidan uppe</p>
+      <p>Hej! Nu är sidan uppe!</p>
     </div>
   )
 }
