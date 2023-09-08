@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+.css-header {
+    background-color: #7c5a3e;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+.rubrik {
+    margin: 0;
+    padding: 0;
+}
+.css-header > img {
+    width: 60px;
+    height: 60px;
+    border-radius: 100px;
+}
+
