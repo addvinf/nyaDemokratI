@@ -1,6 +1,6 @@
 import { useState } from "react";
 import mats from "../Pictures/0de09bdc-f601-4b67-bbbc-192519350292.avif"
-import "./Styles/header.css"
+//import "./Styles/header.css"
 
 export default function Header(props) {
 
