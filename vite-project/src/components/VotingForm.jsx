@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 
 export default function VotingForm(props) {
@@ -36,3 +37,26 @@ export default function VotingForm(props) {
         </form>
     );
 }
+=======
+import { useState } from "react";
+import VoteButton from "./VoteButton"; "./VoteButton.jsx"
+//import buttonClick from "./Functions"; "./Functions.jsx"
+
+export default function VotingForm(props) {
+    
+    const buttonClickAction = () => {
+        console.log("Du har röstat på " + VoteButton.name);
+    }
+
+    return (
+        <form>
+            <VoteButton name="Edvin" />
+            <VoteButton name="Mats" />
+            <VoteButton name="Blank" />
+
+            <button onClick={buttonClickAction}>Rösta</button>
+            <button type="submit" formAction="racegame.html">Knapp som gör något</button>
+        </form>
+    )
+}
+>>>>>>> c721f964f5c0ccf6a8ca9df1cbd64f7f889144c3
