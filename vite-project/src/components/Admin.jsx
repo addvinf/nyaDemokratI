@@ -1,4 +1,6 @@
 import { useState } from "react";
+import "./Styles/admin.css"
+import mats from "../Pictures/0de09bdc-f601-4b67-bbbc-192519350292.avif"
 
 export default function Admin(props) {
 
@@ -13,37 +15,40 @@ export default function Admin(props) {
 
     function submitForm(event) {
         event.preventDefault();
-        setUserList([...userList, email])
+        setUserList([...userList, userObject]);
     }
 
-    function handleEmail(event) {
-        setEmail(event.target.value);
+    function handleUser(event) {
+        setUserObject({...userObject, [event.target.name]: event.target.value})
     }
 
-    function deleteUser(user) {
-        console.log(user + " deleted");
+    function deleteUser(userObject) {
+        console.log(userObject.name + " deleted");
         // Remove the user from the list
-        setUserList(userList.filter((item) => item !== user));
+        setUserList(userList.filter((item) => item.email !== userObject.email));
     }
 
 
     function activeUsers() {
-        return userList.map((user) => (
-            <span key={user}>
-                <p>{user}</p>
-                <button onClick={()=>deleteUser(user)} >Delete user</button>
+        return userList.map((userObject) => (
+            <span key={userObject.email}>
+                <p>{userObject.name}</p>
+                <p>{userObject.email}</p>
+                <img src={mats} alt="" />
+                <button onClick={()=>deleteUser(userObject)} >Delete user</button>
+
             </span>
         ));
     }
 return (
     <div>
         <form >
-        <input type = "text" placeholder="name" value={}/>
-        <input type="text" placeholder="Email" value={email} onChange={handleEmail} />
+        <input type = "text" placeholder="name" value={userObject.name} onChange={handleUser} name= "name"/>
+        <input type="text" placeholder="Email" value={userObject.email} onChange={handleUser} name= "email"/>
         <button onClick={submitForm}>Add user</button>
         </form>   
 
-        <div>
+        <div className="userdiv">
             {activeUsers()}    
         </div>   
     </div>

@@ -1,0 +1,7 @@
+.userdiv{
+    background-color: rgb(178, 74, 74);
+    
+}
+.userdiv > img  {
+    width: 10px
+}
