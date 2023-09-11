@@ -8,6 +8,7 @@ export default function LogInField(props) {
         console.log(email);
     }
 
+
     return (
         <div>
             <input type="text" placeholder="Email" value={email} onChange={handleEmailChange} />
