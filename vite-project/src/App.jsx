@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Header from './components/Header'
 import FullForm from './components/FullForm'
+import Admin from './components/Admin'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -12,6 +13,7 @@ function App() {
     <div>
       <Header /> 
       <FullForm />
+      <Admin />
        
   
     </div>
