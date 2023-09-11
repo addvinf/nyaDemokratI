@@ -16,8 +16,6 @@ function App() {
       <LogInField />
       <VotingForm />
   
-
-
     </div>
   )
 }
