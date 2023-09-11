@@ -1,7 +1,41 @@
-.userdiv{
-    background-color: rgb(178, 74, 74);
+.specific-user {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 40%; 
+    margin: 10px;
+    border-radius: 20px;
+    position: relative;
+}
+.specific-user > img {
+    width: 100px;
+}
+.specific-user > span {
+    font-size: 15px;
+    color: rgb(0, 0, 0);
+    margin: 0;
+    padding: 0;
+    margin-left: 10px;
+}
+.specific-user > button {
+    margin-right: 20px;
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 40px;
+    position: absolute;
+    right: 0;
+    top: 10px;
+    background-color: rgb(225, 1, 1);
+    color: rgb(225, 1, 1);
+    transition: 0.2s;
+    
     
 }
-.userdiv > img  {
-    width: 10px
+.specific-user > button:hover {
+    background-color: rgb(182, 1, 1);
+    color: rgb(29, 14, 14);
+    cursor: pointer;
+
 }

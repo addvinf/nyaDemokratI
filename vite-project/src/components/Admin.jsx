@@ -11,7 +11,7 @@ export default function Admin(props) {
         }
 
     );
-    const [userList , setUserList] = useState([])
+    const [userList , setUserList] = useState([]);
 
     function submitForm(event) {
         event.preventDefault();
@@ -31,13 +31,16 @@ export default function Admin(props) {
 
     function activeUsers() {
         return userList.map((userObject) => (
-            <span key={userObject.email}>
-                <p>{userObject.name}</p>
-                <p>{userObject.email}</p>
-                <img src={mats} alt="" />
-                <button onClick={()=>deleteUser(userObject)} >Delete user</button>
+            <div className="specific-user" key={userObject.email}>
+                <span>
+                    <p>{userObject.name}</p>
+                    <p>{userObject.email}</p>
+                </span>
+                
+                
+                <button onClick={()=>deleteUser(userObject)} >x</button>
 
-            </span>
+            </div>
         ));
     }
 return (
