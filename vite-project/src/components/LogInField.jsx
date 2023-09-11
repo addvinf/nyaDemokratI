@@ -1,11 +1,18 @@
 import { useState } from "react";
 
 export default function LogInField(props) {
-    const [email, setEmail] = useState("");
+
 
     const handleEmailChange = (event) => {
-        setEmail(event.target.value);
-        console.log(email);
+        props.setEmail(event.target.value);
+        console.log(props.email);
     }
+
+        return (
+            <div>
+                <input type="text" placeholder="Email" value={props.email} onChange={handleEmailChange} />
+            </div>
+        )
+    
 
 }

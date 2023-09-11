@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 
 export default function VotingForm(props) {
-    const [selectedCandidate, setSelectedCandidate] = useState(null);
+
 
     function handleCandidateChange(event) {
-        setSelectedCandidate(event.target.value);
+        props.setSelectedCandidate(event.target.value);
     }
 
     function submitVote(event) {
         event.preventDefault(); // Prevent the default form submission behavior
-        if (selectedCandidate !== null) {
-            console.log("Voted for:", selectedCandidate);
+        if (props.selectedCandidate !== null) {
+            console.log("Voted for:", props.selectedCandidate);
             // You can send the selected candidate to the server or perform other actions here
         } else {
             console.log("Please select a candidate before submitting.");
@@ -22,7 +22,7 @@ export default function VotingForm(props) {
             <input
                 type="radio"
                 value={candidate}
-                checked={selectedCandidate === candidate}
+                checked={props.selectedCandidate === candidate}
                 onChange={handleCandidateChange}
             />
             <label>{candidate}</label>

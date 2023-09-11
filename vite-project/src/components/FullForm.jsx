@@ -6,12 +6,22 @@ export default function FullForm(props) {
 
     const [email, setEmail] = useState("");
     const [selectedCandidate, setSelectedCandidate] = useState(null);
+    console.log(email + " " + selectedCandidate);
+    
 
     return (
 
         <div>
-            <LogInField />
-            <VotingForm listOfCandidates={["Edvin", "Mats"]} />
+            <LogInField 
+                email={email}
+                setEmail={setEmail}
+            />
+            <VotingForm 
+                listOfCandidates={["Edvin", "Mats", "Blank"]} 
+                selectedCandidate = {selectedCandidate}
+                setSelectedCandidate = {setSelectedCandidate}
+            />
+            
         </div>
     );
 
