@@ -15,7 +15,12 @@ export default function Admin(props) {
 
     function submitForm(event) {
         event.preventDefault();
+        //check if user already exists
+        if (userList.some((item) => item.email === userObject.email)) {
+        } else {
         setUserList([...userList, userObject]);
+        }
+        
     }
 
     function handleUser(event) {
