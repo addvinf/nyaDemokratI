@@ -7,15 +7,7 @@ export default function VotingForm(props) {
         props.setSelectedCandidate(event.target.value);
     }
 
-    function submitVote(event) {
-        event.preventDefault(); // Prevent the default form submission behavior
-        if (props.selectedCandidate !== null) {
-            console.log("Voted for:", props.selectedCandidate);
-            // You can send the selected candidate to the server or perform other actions here
-        } else {
-            console.log("Please select a candidate before submitting.");
-        }
-    }
+    
 
     const listOfCandidates = props.listOfCandidates.map((candidate) => (
         <span key={candidate}>
@@ -30,7 +22,7 @@ export default function VotingForm(props) {
     ));
 
     return (
-        <form onSubmit={submitVote}>
+        <form onSubmit={props.submitVote}>
             <ul>{listOfCandidates}</ul>
             <button type="submit">Vote</button>
         </form>
