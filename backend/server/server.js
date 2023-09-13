@@ -56,6 +56,57 @@ app.get('/getUser/:email', async (req, res) => {
     }
 });
 
+//create user POST
+app.post('/createUser', async (req, res) => {
+    console.log(req.body);
+    try {
+        const results = await db.query("INSERT INTO users (email, hashed_email, name) VALUES ($1, $2, $3) returning *", [req.body.email, req.body.hashed_email, req.body.name]); 
+        //console.log("Results" + results);
+        res.status(201).json({
+            status: 'success',
+            data: {
+                users: results.rows[0]
+            }
+        })
+
+    } catch (err) {
+        console.log(err);
+    }
+
+});
+
+//uppdate user
+app.put('/updateUser/:email', async (req, res) => {
+
+    const results = await db.query("UPDATE users SET email = $1, hashed_email = $2, name = $3 WHERE email = $4 returning *", [req.body.email, req.body.hashed_email, req.body.name, req.params.email]);
+
+    console.log(results);
+
+    res.status(200).json({
+        status: 'success',
+        data: {
+            users: results.rows[0]
+        }
+    })
+
+});
+
+//delete user
+app.delete('/deleteUser/:email', async (req, res) => {
+
+    try {
+        const result = await db.query("DELETE FROM users WHERE email = $1", [req.params.email]);
+
+    res.status(204).json({
+        status: 'success'
+    })
+    } catch (err) {
+        console.log(err);
+    }
+    
+
+});
+
 //Det vi kommer vilja ha som anrop är:
 /*
 
