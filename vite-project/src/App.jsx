@@ -1,22 +1,24 @@
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
-import Header from './components/Header'
-import FullForm from './components/FullForm'
-import Admin from './components/Admin'
+
+import Admin from './routes/Admin'
+
+
+import User from './routes/User'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div>
-      <Header /> 
-      <FullForm />
-      <Admin />
-       
-  
-    </div>
+    <Router>
+      <Routes>
+        <Route exact path="/" element={<User/>}/>
+        <Route exact path="/admin" element={<Admin/>}/>
+      </Routes>       
+    </Router>
+    
   )
 }
 

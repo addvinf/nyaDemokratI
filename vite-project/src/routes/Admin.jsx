@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Styles/admin.css"
+import "../components/Styles/admin.css"
 import mats from "../Pictures/0de09bdc-f601-4b67-bbbc-192519350292.avif"
 
 export default function Admin(props) {
