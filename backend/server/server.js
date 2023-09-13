@@ -12,23 +12,48 @@ app.use(express.json());
 
 
 //get all users GET
-app.get('/getUser', async (req, res) => {
-    
-    const result = await db.query('SELECT * FROM users')
-    console.log(result);
+app.get('/getUsers', async (req, res) => {
 
-    res.status(200).json({
-        status: 'success',
-        data: {
-            emails: ['edvinfa@kth.se', 'desaulty@kth.se']
-        }
-        
-    })
+    try {
+        const result = await db.query('SELECT * FROM users')
+        res.status(200).json({
+            status: 'success',
+            results: result.rows.length,
+            data: {
+                users: result.rows
+            }
+            
+        })
+        console.log(result);
+
+    } 
+    catch (err) {
+        console.log(err);
+    }
+    
+    
+    
+    
 });
 
-//get user
-app.get('/getUser/:id', (req, res) => {
-    console.log(req.params);
+//get specific user
+//Denna borde man kanske göra om till att hämta från hashen
+app.get('/getUser/:email', async (req, res) => {
+    console.log(req.params.email);
+    try {
+        const result = await db.query(`SELECT * FROM users WHERE email = $1`, [req.params.email])
+        console.log(result);
+        res.status(200).json({
+            status: 'success',
+            data: {
+                users: result.rows[0]
+            }
+            
+        })
+    }
+    catch (err) {
+        console.log(err);
+    }
 });
 
 //Det vi kommer vilja ha som anrop är:
