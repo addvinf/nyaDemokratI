@@ -6,7 +6,7 @@ export default function AdminList(props){
             <div className="specific-user" key={userObject.email}>
                 <span>
                     <p>{userObject.name}</p>
-                    <p>{userObject.email}</p>
+                    <p>{userObject.email && userObject.email}</p>
                 </span>
                 <button onClick={() => deleteUser(userObject)}>x</button>
             </div>
