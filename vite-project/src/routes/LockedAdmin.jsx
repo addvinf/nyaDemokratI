@@ -18,9 +18,10 @@ export default function LockedAdmin(props) {
 
     function submitForm(event) {
         event.preventDefault();
-        //hashedPassword = 
-        login(userObject.password); // Check password using login function from context
+        const hashedPassword = btoa(userObject.password);
+        login(hashedPassword); // Check password using login function from context
         navigate('/unlockedadmin');
+        
       }
 
     function handleUser(event) {
