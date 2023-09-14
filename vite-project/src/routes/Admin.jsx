@@ -1,64 +1,51 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../components/Styles/admin.css"
 import mats from "../Pictures/0de09bdc-f601-4b67-bbbc-192519350292.avif"
+import UserFinder from "../apis/UserFinder";
+import axios from 'axios';
+import AdminForm from "../components/AdminForm";
+import AdminList from "../components/AdminList";
+import { UserListContext } from "../context/UserListContext";
+import { useContext } from "react";
 
 export default function Admin(props) {
+    
+    const addUser = useContext(UserListContext)
+    //console.log(addUser)
+    const [userObject, setUserObject] = useState({
+        name: "",
+        email: "",
+    });
+    const userList = addUser.userList
+    const setUserList = addUser.setUserList
 
-    const [userObject, setUserObject] = useState(
-        {
-            name: "",
-            email: "",
-        }
+    useEffect(() => {
+        (async () => {
+            try {
+                const response = await UserFinder.get("/getUsers");
+                const userData = response.data.data.users;
+                setUserList(userData);
+            } catch (err) {
+                console.log("Det är errors");
+                console.log(err);
+            }
+        })();
+    }, []);
 
+    return (
+        <div>
+            <AdminForm 
+                userList = {userList}
+                setUserList = {setUserList}
+                userObject = {userObject}
+                setUserObject = {setUserObject}
+                addUser = {addUser}
+                />
+            <AdminList 
+                userList = {userList}
+                setUserList = {setUserList}
+                />
+            
+        </div>
     );
-    const [userList , setUserList] = useState([]);
-
-    function submitForm(event) {
-        event.preventDefault();
-        //check if user already exists
-        if (userList.some((item) => item.email === userObject.email)) {
-        } else {
-        setUserList([...userList, userObject]);
-        }
-        
-    }
-
-    function handleUser(event) {
-        setUserObject({...userObject, [event.target.name]: event.target.value})
-    }
-
-    function deleteUser(userObject) {
-        console.log(userObject.name + " deleted");
-        // Remove the user from the list
-        setUserList(userList.filter((item) => item.email !== userObject.email));
-    }
-
-
-    function activeUsers() {
-        return userList.map((userObject) => (
-            <div className="specific-user" key={userObject.email}>
-                <span>
-                    <p>{userObject.name}</p>
-                    <p>{userObject.email}</p>
-                </span>
-                
-                
-                <button onClick={()=>deleteUser(userObject)} >x</button>
-
-            </div>
-        ));
-    }
-return (
-    <div>
-        <form >
-        <input type = "text" placeholder="name" value={userObject.name} onChange={handleUser} name= "name"/>
-        <input type="text" placeholder="Email" value={userObject.email} onChange={handleUser} name= "email"/>
-        <button onClick={submitForm}>Add user</button>
-        </form>   
-
-        <div className="userdiv">
-            {activeUsers()}    
-        </div>   
-    </div>
-);
 }

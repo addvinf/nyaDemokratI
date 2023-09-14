@@ -1,13 +1,16 @@
 require('dotenv').config();
 
+
 const express = require('express');
 const morgan = require('morgan');
 const db = require('./db');
+const cors = require('cors');
 
 const app = express();
 
 
 //middleware
+app.use(cors());
 app.use(express.json());
 
 
@@ -24,7 +27,7 @@ app.get('/getUsers', async (req, res) => {
             }
             
         })
-        console.log(result);
+        //console.log(result);
 
     } 
     catch (err) {
@@ -39,10 +42,10 @@ app.get('/getUsers', async (req, res) => {
 //get specific user
 //Denna borde man kanske göra om till att hämta från hashen
 app.get('/getUser/:email', async (req, res) => {
-    console.log(req.params.email);
+    //console.log(req.params.email);
     try {
         const result = await db.query(`SELECT * FROM users WHERE email = $1`, [req.params.email])
-        console.log(result);
+        //console.log(result);
         res.status(200).json({
             status: 'success',
             data: {
@@ -58,7 +61,7 @@ app.get('/getUser/:email', async (req, res) => {
 
 //create user POST
 app.post('/createUser', async (req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
     try {
         const results = await db.query("INSERT INTO users (email, hashed_email, name) VALUES ($1, $2, $3) returning *", [req.body.email, req.body.hashed_email, req.body.name]); 
         //console.log("Results" + results);
@@ -80,7 +83,7 @@ app.put('/updateUser/:email', async (req, res) => {
 
     const results = await db.query("UPDATE users SET email = $1, hashed_email = $2, name = $3 WHERE email = $4 returning *", [req.body.email, req.body.hashed_email, req.body.name, req.params.email]);
 
-    console.log(results);
+    //console.log(results);
 
     res.status(200).json({
         status: 'success',
