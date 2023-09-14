@@ -7,7 +7,7 @@ const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const encodedPassword = "aGVtbGlndGxvc2Vub3Jk"; 
+  const encodedPassword = "c3845b39dcca6149df7e7d54d23ee54cc4070210918987ce13dcc6477a8fdfea"; 
 
   const login = (password) => {
     if (password === encodedPassword) {
