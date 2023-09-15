@@ -3,3 +3,7 @@ body {
     padding: 0;
     background-color: #dec5ae;
 }
+.mats {
+    width: 400px;
+    border-radius: 20px;
+}

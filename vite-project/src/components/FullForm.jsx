@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import VotingForm from "./VotingForm";
 import LogInField from "./LogInField";
 import UserFinder from "../apis/UserFinder";
+import mats from "../Pictures/mats.jpg";
 
 export default function FullForm(props) {
 
@@ -50,7 +51,7 @@ export default function FullForm(props) {
     return (
 
         <div>
-            {electionData ? (
+            {electionData ? ( electionData.status === "open" ? (
                 <>
                     <h1>{electionData.name}</h1>
                     <LogInField email={email} setEmail={setEmail} />
@@ -61,8 +62,11 @@ export default function FullForm(props) {
                         submitVote={submitVote}
                     />
                 </>
-            ) : (
-                <p>Loading election data...</p>
+            ) : <div>
+                 <p>Inget val öppet</p>
+                 <img className = "mats" src={mats} alt="" />
+            </div>) : (
+                <p>Laddar valdata...</p>
             )}
         </div>
     );
