@@ -9,6 +9,7 @@ export default function FullForm(props) {
     const [email, setEmail] = useState("");
     const [selectedCandidate, setSelectedCandidate] = useState(null);
     const [electionData, setElectionData] = useState(null);
+    const [outputText, setOutputText] = useState(null);
     //console.log(email + " " + selectedCandidate);
 
     useEffect(() => {
@@ -21,7 +22,7 @@ export default function FullForm(props) {
 
             } catch (err) {
                 console.log("Det är errors");
-                console.log(err);
+                //console.log(err);
             }
         })();
     }, []);
@@ -35,14 +36,40 @@ export default function FullForm(props) {
         return hash;
     }
     
-    function submitVote(event) {
+    async function submitVote(event) {
         event.preventDefault(); // Prevent the default form submission behavior
         if (selectedCandidate !== null) {
+            //tidigare kod
             var userId = hash(email);
-            console.log("Voted for:", selectedCandidate + " with email: " + email + " and userId: " + userId);
-            // You can send the selected candidate to the server or perform other actions here
+            //console.log("Voted for:", selectedCandidate + " with email: " + email + " and userId: " + userId);
+            //ny kod
+            try {
+                const response = await UserFinder.post('/vote', {
+                    email: email,
+                    vote: selectedCandidate,
+                })
+                //console.log(response.data.status)
+                if (response.data.status === "success"){
+
+                    setOutputText("Din röst på " + selectedCandidate + " har registrerats.");
+                }
+                else if (response.data.status === "fail") {
+                    setOutputText("Du har redan röstat bitch")
+                }
+                else if (response.data.status === "nonexistent"){
+                    setOutputText("Du är inte registrerad i systemet")
+                }
+
+    
+            
+
+
+            }catch(err){
+                //console.log("Det är errors");
+                setOutputText("Du har redan röstat bitch");
+            }
         } else {
-            console.log("Please select a candidate before submitting.");
+            setOutputText("Please select a candidate before submitting.");
         }
     }
 
@@ -61,6 +88,7 @@ export default function FullForm(props) {
                         setSelectedCandidate={setSelectedCandidate}
                         submitVote={submitVote}
                     />
+                    <div>{outputText}</div>
                 </>
             ) : <div>
                  <p>Inget val öppet</p>

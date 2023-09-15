@@ -13,6 +13,99 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+//vote POST
+app.post('/vote', async (req, res) => {
+    //console.log(req.body);
+
+    try {
+
+        const userExist = await db.query("SELECT * FROM users WHERE email = $1", [req.body.email]);
+
+        if (userExist.rows.length === 0) {
+            res.status(201).json({
+                status: 'nonexistent',
+            })
+        }
+        else {
+            const result = await db.query(
+                "INSERT INTO votes (user_email, vote_option) VALUES ($1, $2) returning *",
+                [req.body.email, req.body.vote]
+            );
+            res.status(201).json({
+                status: 'success',
+                data: {
+                    votes: result.rows[0]
+    
+                }
+            })
+            
+        }
+        
+        
+    }
+    catch (err) {
+        //console.log(err);
+        res.status(201).json({
+            status: 'fail'
+        })
+    }
+
+
+        //console.log(err);
+        /*res.status(400).json({
+            status: 'fail'
+        })*/
+
+    
+});
+
+//get all votes GET
+app.get('/getVotes', async (req, res) => {
+    try {
+        const result = await db.query("SELECT * FROM votes");
+        res.status(200).json({
+            status: 'success',
+            results: result.rows.length,
+            data: {
+                votes: result.rows
+            }
+        })
+    }
+    catch (err) {
+        console.log(err);
+    }
+});
+
+//get all votes for a vote_option
+app.get('/getVotes/:vote_option', async (req, res) => {
+    try {
+        const result = await db.query("SELECT * FROM votes WHERE vote_option = $1", [req.params.vote_option]);
+        res.status(200).json({
+            status: 'success',
+            results: result.rows.length,
+            data: {
+                votes: result.rows
+            }
+        })
+    }
+    catch (err) {
+        console.log(err);
+    }
+});
+
+//delete all votes DELETE
+app.delete('/deleteVotes', async (req, res) => {
+    try {
+        const result = await db.query("DELETE FROM votes");
+        res.status(204).json({
+            status: 'success'
+        })
+    }
+    catch (err) {
+        console.log(err);
+    }
+});
+
 //update election data PUT
 app.put('/updateElectionData/', async (req, res) => {
     try{
