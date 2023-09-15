@@ -2,6 +2,7 @@ import { useState } from "react";
 import UserFinder from "../apis/UserFinder";
 
 export default function ElectionAdmin (props) {
+    const [result, setResult] = useState([]);
     
     function activeCandidates() {
         return electionObject.candidates.map((candidate) => (
@@ -13,11 +14,13 @@ export default function ElectionAdmin (props) {
             </div>
         ));
     } 
+    
     function deleteCandidate(candidate) {
         setElectionObject({...electionObject, candidates: electionObject.candidates.filter((item) => item !== candidate)});
     }
     
     
+
     const [electionObject, setElectionObject] = useState({
         electionName: "",
         candidates: [],
@@ -53,8 +56,42 @@ export default function ElectionAdmin (props) {
     const handleStatusChange = (event) => {
         setElectionObject({...electionObject, status: event.target.value})
     }
-    const clearVotes = (event) => {
+    async function clearVotes (event) {
         event.preventDefault();
+        try {
+            const response = await UserFinder.delete('deleteVotes');
+        }
+        catch(err){
+            console.log(err)
+        }
+    }
+
+    async function getResult(event){
+        event.preventDefault();
+        try {
+            const response = await UserFinder.get('getVoteResults');
+            //eventuellt fel här
+            //setResult(response.rows)
+            console.log(response.data.data.votes)
+            setResult(response.data.data.votes)
+
+            
+        }
+        catch(err){
+            console.log(err)
+        }
+
+    }
+
+    function showResult(){
+        return result.map((item) => (
+            <div className="specific-user" key={item.candidate}>
+                <span>
+                    <p>{item.vote_option}</p>
+                    <p>{item.count}</p>
+                </span>
+            </div>
+        ));
     }
 
   
@@ -98,9 +135,16 @@ export default function ElectionAdmin (props) {
 
         <button onClick={uppdatera}>Uppdatera val</button>
         <button onClick={clearVotes}>Nytt Val</button>
+        <button onClick={getResult}>Hämta resultat</button>
       </form>
       <h2>Kandidater</h2>
       {activeCandidates()}
+
+        <h2>Resultat</h2>   
+        <div>
+            {showResult()}
+       </div>
+
     </div>
   )
 }

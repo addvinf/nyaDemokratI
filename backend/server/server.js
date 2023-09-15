@@ -13,6 +13,28 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+//get vote results
+app.get('/getVoteResults', async (req, res) => {
+    try {
+        const result = await db.query("SELECT vote_option, COUNT(*) FROM votes GROUP BY vote_option");
+        res.status(200).json({
+            status: 'success',
+            results: result.rows.length,
+            data: {
+                votes: result.rows
+            }
+        })
+        console.log(result.rows);
+    }
+    catch (err) {
+        console.log(err);
+    }
+    
+    
+});
+
+
+
 //vote POST
 app.post('/vote', async (req, res) => {
     //console.log(req.body);
