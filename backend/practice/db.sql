@@ -20,3 +20,20 @@ CREATE TABLE election_data
 INSERT INTO election_data (name, status, candidates) VALUES ('Presidentval', 'open', '{"Mats Desaulty", "Edvin", "Pelle Svanslös"}');
 
 SELECT * FROM election_data;
+
+CREATE TABLE votes (
+    user_email VARCHAR(255) NOT NULL PRIMARY KEY,
+    vote_option VARCHAR(255) NOT NULL,
+    vote_date TIMESTAMP DEFAULT NOW(),
+    CONSTRAINT unique_vote_per_user UNIQUE (user_email)
+);
+
+SELECT * FROM votes;
+
+//clear TABLE
+
+DELETE FROM votes;
+
+DROP TABLE votes;
+
+INSERT INTO votes (user_email, vote_option) SELECT $1, $2 WHERE EXISTS ( SELECT 1 FROM users WHERE email = $1);
