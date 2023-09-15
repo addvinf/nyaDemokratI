@@ -1,0 +1,4 @@
+Ta bort alla console logs
+Dela upp filerna i mindre filer
+Formatera
+Fixa hashningen

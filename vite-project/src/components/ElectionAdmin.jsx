@@ -99,23 +99,23 @@ export default function ElectionAdmin (props) {
     <div>
       <h1>Election Admin</h1>
       <form>
-        <label>Election Name</label>
         <input 
+            className="input-fields down"
             type="text" 
             placeholder="Namn på val" 
             name="electionName" 
             value={electionObject.electionName}
             onChange={(event) => setElectionObject({...electionObject, electionName: event.target.value})}
         />
-        <label>Candidates</label>
-        <input 
+        <input
+            className="input-fields down" 
             type="text" 
             placeholder="Kandidat" 
             name="candidates"
             value={candidate}
             onChange={(event) => setCandidate(event.target.value)}
             ></input>
-        <button onClick={addCandidate}>Lägg till kandidat</button>
+        <button className="add-button" onClick={addCandidate}>Lägg till kandidat</button>
         <span>
             <input 
                 type="radio" 
@@ -133,9 +133,9 @@ export default function ElectionAdmin (props) {
             <label>Stängd</label>
         </span>
 
-        <button onClick={uppdatera}>Uppdatera val</button>
-        <button onClick={clearVotes}>Nytt Val</button>
-        <button onClick={getResult}>Hämta resultat</button>
+        <button className="add-button" onClick={uppdatera}>Uppdatera val</button>
+        <button className="add-button" onClick={clearVotes}>Nytt Val</button>
+        <button className="add-button" onClick={getResult}>Hämta resultat</button>
       </form>
       <h2>Kandidater</h2>
       {activeCandidates()}
