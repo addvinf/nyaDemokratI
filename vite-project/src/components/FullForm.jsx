@@ -3,6 +3,7 @@ import VotingForm from "./VotingForm";
 import LogInField from "./LogInField";
 import UserFinder from "../apis/UserFinder";
 import mats from "../Pictures/mats.jpg";
+import './Styles/userpage.css'
 
 export default function FullForm(props) {
 
@@ -88,7 +89,7 @@ export default function FullForm(props) {
                         setSelectedCandidate={setSelectedCandidate}
                         submitVote={submitVote}
                     />
-                    <div>{outputText}</div>
+                    <div className="submit-message">{outputText}</div>
                 </>
             ) : <div>
                  <p>Inget val öppet</p>

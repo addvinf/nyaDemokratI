@@ -8,6 +8,7 @@ import AdminList from "../components/AdminList";
 import { UserListContext } from "../context/UserListContext";
 import { useContext } from "react";
 import ElectionAdmin from "../components/ElectionAdmin";
+import Header from "../components/Header"
 
 export default function Admin(props) {
     
@@ -34,7 +35,8 @@ export default function Admin(props) {
     }, []);
 
     return (
-        <div>
+        <div className="main-admin">
+            <Header />
             <AdminForm 
                 userList = {userList}
                 setUserList = {setUserList}

@@ -32,10 +32,17 @@ export default function AdminForm(props) {
     }
 
     return (
-        <form>
-                <input type="text" placeholder="name" value={props.userObject.name} onChange={handleUser} name="name" />
-                <input type="text" placeholder="Email" value={props.userObject.email} onChange={handleUser} name="email" />
-                <button onClick={submitForm}>Add user</button>
-        </form>
+        <div>
+            <h1>Lägg till användare</h1>
+                <form>
+                        <div className="inputs">
+                            <input className="input-fields" type="text" placeholder="name" value={props.userObject.name} onChange={handleUser} name="name" />
+                            <input className="input-fields" type="text" placeholder="Email" value={props.userObject.email} onChange={handleUser} name="email" />
+                            <button className="add-button" onClick={submitForm}>Add user</button>
+                        </div>
+                         
+                </form>
+        </div>
+        
     )
 }

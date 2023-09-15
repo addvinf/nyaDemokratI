@@ -9,8 +9,8 @@ export default function LogInField(props) {
     }
 
         return (
-            <div>
-                <input type="text" placeholder="Email" value={props.email} onChange={handleEmailChange} />
+            <div className="user-login">
+                <input className="email-box" type="text" placeholder="Email" value={props.email} onChange={handleEmailChange} />
             </div>
         )
     
