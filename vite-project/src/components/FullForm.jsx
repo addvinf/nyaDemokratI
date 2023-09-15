@@ -1,12 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import VotingForm from "./VotingForm";
 import LogInField from "./LogInField";
+import UserFinder from "../apis/UserFinder";
 
 export default function FullForm(props) {
 
     const [email, setEmail] = useState("");
     const [selectedCandidate, setSelectedCandidate] = useState(null);
-    console.log(email + " " + selectedCandidate);
+    const [electionData, setElectionData] = useState(null);
+    //console.log(email + " " + selectedCandidate);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const response = await UserFinder.get("/getElectionData");
+                //console.log(response.data.data.election_data);
+                setElectionData(response.data.data.election_data) //then add the blank candidate
+                
+
+            } catch (err) {
+                console.log("Det är errors");
+                console.log(err);
+            }
+        })();
+    }, []);
 
     function hash(string){
         var hash = 0;
@@ -29,20 +46,24 @@ export default function FullForm(props) {
     }
 
 
+
     return (
 
         <div>
-            <LogInField 
-                email={email}
-                setEmail={setEmail}
-            />
-            <VotingForm 
-                listOfCandidates={["Edvin", "Mats", "Blank"]} 
-                selectedCandidate = {selectedCandidate}
-                setSelectedCandidate = {setSelectedCandidate}
-                submitVote = {submitVote}
-            />
-            
+            {electionData ? (
+                <>
+                    <h1>{electionData.name}</h1>
+                    <LogInField email={email} setEmail={setEmail} />
+                    <VotingForm
+                        listOfCandidates={electionData.candidates}
+                        selectedCandidate={selectedCandidate}
+                        setSelectedCandidate={setSelectedCandidate}
+                        submitVote={submitVote}
+                    />
+                </>
+            ) : (
+                <p>Loading election data...</p>
+            )}
         </div>
     );
 

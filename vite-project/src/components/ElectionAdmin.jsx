@@ -1,4 +1,5 @@
 import { useState } from "react";
+import UserFinder from "../apis/UserFinder";
 
 export default function ElectionAdmin (props) {
     
@@ -20,7 +21,7 @@ export default function ElectionAdmin (props) {
     const [electionObject, setElectionObject] = useState({
         electionName: "",
         candidates: [],
-        status: "Stängt"
+        status: "closed"
     });
     const [candidate, setCandidate] = useState("");
 
@@ -31,9 +32,22 @@ export default function ElectionAdmin (props) {
     setCandidate("");
     }
 
-    const uppdatera = (event) => {
+    async function uppdatera(event) {
         event.preventDefault();
-        console.log(electionObject)
+        console.log(electionObject);
+        //uppdaterar val i databasen
+        try{
+            const response = await UserFinder.put('updateElectionData', {
+                name: electionObject.electionName,
+                candidates: electionObject.candidates,
+                status: electionObject.status
+            });
+            console.log(response.data.data)
+        }
+        catch(err){
+            console.log(err)
+        }
+
     }
 
     const handleStatusChange = (event) => {
@@ -68,15 +82,15 @@ export default function ElectionAdmin (props) {
         <span>
             <input 
                 type="radio" 
-                value="Öppet"
-                checked={electionObject.status == "Öppet"}
+                value="open"
+                checked={electionObject.status == "open"}
                 onChange= {handleStatusChange}
                 />
             <label>Öppet</label>
             <input 
                 type="radio" 
-                value="Stängt" 
-                checked={electionObject.status == "Stängt"} 
+                value="closed" 
+                checked={electionObject.status == "closed"} 
                 onChange= {handleStatusChange}
                 />
             <label>Stängd</label>

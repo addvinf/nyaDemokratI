@@ -13,6 +13,36 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+//update election data PUT
+app.put('/updateElectionData/', async (req, res) => {
+    try{
+        const result = await db.query("UPDATE election_data SET name = $1, status = $2, candidates = $3  WHERE id = 1 returning *", [req.body.name, req.body.status, req.body.candidates]);
+        res.status(200).json({
+            status: 'success',
+            data: {
+                election_data: result.rows[0]
+            }
+        })
+    }
+    catch(err){console.log(err)}
+
+});
+
+//get election data GET
+app.get('/getElectionData', async (req, res) => {
+    try{
+        const result = await db.query("SELECT * FROM election_data WHERE id = 1");
+        res.status(200).json({
+            status: 'success',
+            data: {
+                election_data: result.rows[0]
+            }
+        })
+    }
+    catch(err){console.log(err)}
+
+});
+
 
 //get all users GET
 app.get('/getUsers', async (req, res) => {
