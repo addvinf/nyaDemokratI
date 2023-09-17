@@ -98,3 +98,9 @@ body {
     align-items: center;
     margin-top: 100px;
 }
+.header-text{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

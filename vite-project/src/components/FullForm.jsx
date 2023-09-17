@@ -81,7 +81,7 @@ export default function FullForm(props) {
         <div>
             {electionData ? ( electionData.status === "open" ? (
                 <>
-                    <h1>{electionData.name}</h1>
+                    <h1 className="header-text">{electionData.name}</h1>
                     <LogInField email={email} setEmail={setEmail} />
                     <VotingForm
                         listOfCandidates={electionData.candidates}
