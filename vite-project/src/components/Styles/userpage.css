@@ -35,7 +35,7 @@ body {
     align-items: center;
 
     font-size: 17px;
-    width: 70%;
+    width: 100%;
     background-color: rgb(241, 239, 235);
     border-radius: 50px;
     transition: 0.3s;
@@ -65,6 +65,7 @@ body {
 .vote-form > ul {
     padding: 0;
     margin: 0;
+    width: 60%;
     /* Add any other styles specific to the <ul> here */
 }
 .vote-button {
