@@ -10,7 +10,10 @@ export default function AdminForm(props) {
         // Check if user already exists
         if (props.userList.some((item) => item.email === props.userObject.email)) {
             // Handle user already exists
-        } else {
+        }
+        else if (props.userObject.name === "" || props.userObject.email === "") {
+        }
+        else {
             try{
                 const response   = await UserFinder.post('/createUser', {
                     name: props.userObject.name,
