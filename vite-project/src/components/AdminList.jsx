@@ -21,10 +21,12 @@ export default function AdminList(props){
     }
 
     return (
-        <div className="userdiv">
+        props.showMembers && (
+          <div className="userdiv">
             <h1>Medlemmar</h1>
             {activeUsers()}
-        </div>
-    )
+          </div>
+        )
+      );
 
 }

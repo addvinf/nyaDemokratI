@@ -20,6 +20,7 @@ export default function Admin(props) {
     });
     const userList = addUser.userList
     const setUserList = addUser.setUserList
+    const [showMembers, setShowMembers] = useState(true);
 
     useEffect(() => {
         (async () => {
@@ -43,10 +44,14 @@ export default function Admin(props) {
                 userObject = {userObject}
                 setUserObject = {setUserObject}
                 addUser = {addUser}
+                showMembers = {showMembers}
+                setShowMembers = {setShowMembers}
                 />
             <AdminList 
                 userList = {userList}
                 setUserList = {setUserList}
+                showMembers = {showMembers}
+                setShowMembers = {setShowMembers}
                 />
             <ElectionAdmin />
             
