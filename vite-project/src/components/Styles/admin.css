@@ -94,8 +94,36 @@
 }
 .update-stauts {
     display: block;
-    margin-top: 50px;
+}
+.update-stauts>label {
+    background-color: black;
+}
+.update-stauts:active {
+    background-color: green;
 }
 .entire-elad {
     position: relative;
+    background-color: #8a8cad;
+    padding: 10px;
+    margin: 10px;
+    margin-bottom: 50px;
+    border-radius: 20px;
+}
+.radio-button-two {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size: 20px;
+    margin-left: 5px;
+    
+}
+
+.userdiv{
+    background-color: #7c5a3e;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    color: white;
+}
+.userdiv > h1 {
+    margin-left: 15px;
 }

@@ -47,6 +47,7 @@ export default function ElectionAdmin (props) {
                 status: electionObject.status
             });
             console.log(response.data.data)
+            alert("Val uppdaterat")
         }
         catch(err){
             console.log(err)
@@ -61,6 +62,7 @@ export default function ElectionAdmin (props) {
         event.preventDefault();
         try {
             const response = await UserFinder.delete('deleteVotes');
+            alert("Röster nollställda")
         }
         catch(err){
             console.log(err)
@@ -126,31 +128,38 @@ export default function ElectionAdmin (props) {
         </div>
         
         
-        <div >
-            <span className="update-status">
-                <input 
-                    type="radio" 
+        <div>
+            <div className="update-status">
+                <label>
+                    <input
+                    className="radio-button-two"
+                    type="radio"
                     value="open"
-                    checked={electionObject.status == "open"}
-                    onChange= {handleStatusChange}
+                    checked={electionObject.status === "open"}
+                    onChange={handleStatusChange}
                     />
-                <label>Öppet</label>
-                <input 
-                    type="radio" 
-                    value="closed" 
-                    checked={electionObject.status == "closed"} 
-                    onChange= {handleStatusChange}
+                    Öppet
+                </label>
+
+            </div>
+
+            <div className="update-status">
+                <label>
+                    <input
+                    className="radio-button-two"
+                    type="radio"
+                    value="closed"
+                    checked={electionObject.status === "closed"}
+                    onChange={handleStatusChange}
                     />
-                <label>Stängd</label>
-            </span>
-
-           
-
+                    Stängd
+                </label>
+            </div>
+            
         </div>
-        <div className="upd-div">
-            <button className="add-button" onClick={uppdatera}>Uppdatera val</button>
-        </div>
-       
+
+
+        <button className="add-button" onClick={uppdatera}>Uppdatera val</button>
         <button className="add-button" onClick={clearVotes}>Nollställ röster</button>
         <button className="add-button" onClick={getResult}>Hämta resultat</button>
       </form>
