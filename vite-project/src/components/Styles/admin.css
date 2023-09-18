@@ -84,7 +84,18 @@
 }
 .candidate-add {
     display: block;
+    position: absolute;
+    margin-right: 50px;
+    margin-top: -110px;
+    right: 0;
+    background-color: #7c5a3e;
+    padding: 10px;
+    border-radius: 20px;
 }
 .update-stauts {
     display: block;
+    margin-top: 50px;
+}
+.entire-elad {
+    position: relative;
 }

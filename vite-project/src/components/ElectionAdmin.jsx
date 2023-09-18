@@ -97,7 +97,7 @@ export default function ElectionAdmin (props) {
 
   
     return (
-    <div>
+    <div className="entire-elad">
       <h1>Election Admin</h1>
       <form className="admin-form">
         <input 
@@ -126,8 +126,8 @@ export default function ElectionAdmin (props) {
         </div>
         
         
-        <div className="update-status">
-            <span>
+        <div >
+            <span className="update-status">
                 <input 
                     type="radio" 
                     value="open"
@@ -147,7 +147,7 @@ export default function ElectionAdmin (props) {
            
 
         </div>
-        <div>
+        <div className="upd-div">
             <button className="add-button" onClick={uppdatera}>Uppdatera val</button>
         </div>
        
