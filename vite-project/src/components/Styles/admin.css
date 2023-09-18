@@ -106,7 +106,6 @@
     background-color: #8a8cad;
     padding: 10px;
     margin: 10px;
-    margin-bottom: 50px;
     border-radius: 20px;
 }
 .radio-button-two {
@@ -126,4 +125,31 @@
 }
 .userdiv > h1 {
     margin-left: 15px;
+}
+.results {
+    background-color: #7c5a3e;
+    margin: 10px;
+    margin-top: 0;
+    padding: 10px;
+    border-radius: 20px;
+    color: white;
+    position: relative;
+    padding-bottom: 130px;
+}
+.logo-two {
+    position: absolute;
+    width: 100px;
+    right: 50px;
+    top: 25px;
+}
+.top-form{
+    background-color: rgb(49, 48, 48);
+    margin: 10px;
+    border-radius: 20px;
+    color: white;
+    padding: 10px;
+}
+.top-form>h1{
+    margin-left: 20px;
+    margin-top: 20px;
 }

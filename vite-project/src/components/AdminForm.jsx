@@ -46,7 +46,7 @@ export default function AdminForm(props) {
         
 
     return (
-        <div>
+        <div className="top-form">
             <h1>Lägg till användare</h1>
                 <form>
                         <div className="inputs">

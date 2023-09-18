@@ -1,5 +1,6 @@
 import { useState } from "react";
 import UserFinder from "../apis/UserFinder";
+import logo from "../Pictures/Logga2.png";
 
 export default function ElectionAdmin (props) {
     const [result, setResult] = useState([]);
@@ -99,76 +100,82 @@ export default function ElectionAdmin (props) {
 
   
     return (
-    <div className="entire-elad">
-      <h1>Election Admin</h1>
-      <form className="admin-form">
-        <input 
-            className="input-fields down"
-            type="text" 
-            placeholder="Namn på val" 
-            name="electionName" 
-            value={electionObject.electionName}
-            onChange={(event) => setElectionObject({...electionObject, electionName: event.target.value})}
-        />
-        <div className="candidate-add">
-            <input
-                className="input-fields down" 
+    <div>
+        <div className="entire-elad">
+        <h1>Election Admin</h1>
+        <form className="admin-form">
+            <input 
+                className="input-fields down"
                 type="text" 
-                placeholder="Kandidat" 
-                name="candidates"
-                value={candidate}
-                onChange={(event) => setCandidate(event.target.value)}
-                ></input>
-            <button className="add-button" onClick={addCandidate}>Lägg till kandidat</button>
+                placeholder="Namn på val" 
+                name="electionName" 
+                value={electionObject.electionName}
+                onChange={(event) => setElectionObject({...electionObject, electionName: event.target.value})}
+            />
+            <div className="candidate-add">
+                <input
+                    className="input-fields down" 
+                    type="text" 
+                    placeholder="Kandidat" 
+                    name="candidates"
+                    value={candidate}
+                    onChange={(event) => setCandidate(event.target.value)}
+                    ></input>
+                <button className="add-button" onClick={addCandidate}>Lägg till kandidat</button>
 
-            <h2>Kandidater</h2>
-      {activeCandidates()}
+                <h2>Kandidater</h2>
+        {activeCandidates()}
 
-        
-        </div>
-        
-        
-        <div>
-            <div className="update-status">
-                <label>
-                    <input
-                    className="radio-button-two"
-                    type="radio"
-                    value="open"
-                    checked={electionObject.status === "open"}
-                    onChange={handleStatusChange}
-                    />
-                    Öppet
-                </label>
-
-            </div>
-
-            <div className="update-status">
-                <label>
-                    <input
-                    className="radio-button-two"
-                    type="radio"
-                    value="closed"
-                    checked={electionObject.status === "closed"}
-                    onChange={handleStatusChange}
-                    />
-                    Stängd
-                </label>
+            
             </div>
             
+            
+            <div>
+                <div className="update-status">
+                    <label>
+                        <input
+                        className="radio-button-two"
+                        type="radio"
+                        value="open"
+                        checked={electionObject.status === "open"}
+                        onChange={handleStatusChange}
+                        />
+                        Öppet
+                    </label>
+
+                </div>
+
+                <div className="update-status">
+                    <label>
+                        <input
+                        className="radio-button-two"
+                        type="radio"
+                        value="closed"
+                        checked={electionObject.status === "closed"}
+                        onChange={handleStatusChange}
+                        />
+                        Stängd
+                    </label>
+                </div>
+                
+            </div>
+
+
+            <button className="add-button" onClick={uppdatera}>Uppdatera val</button>
+            <button className="add-button" onClick={clearVotes}>Nollställ röster</button>
+            <button className="add-button" onClick={getResult}>Hämta resultat</button>
+        </form>
+        
+        
+
         </div>
-
-
-        <button className="add-button" onClick={uppdatera}>Uppdatera val</button>
-        <button className="add-button" onClick={clearVotes}>Nollställ röster</button>
-        <button className="add-button" onClick={getResult}>Hämta resultat</button>
-      </form>
-      <h2>Resultat</h2>   
-        <div>
-            {showResult()}
-       </div>
-      
-
+            <div className="results">
+                <h1>Resultat</h1> 
+                <img className="logo-two" src={logo} alt="" />  
+                <div>
+                    {showResult()}
+                </div>
+            </div>
     </div>
   )
 }
