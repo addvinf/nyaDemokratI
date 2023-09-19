@@ -39,10 +39,10 @@ export default function LockedAdmin(props) {
 
 
 return (
-    <div>
-        <form >
-        <input type = "text" placeholder="password" value={userObject.password} onChange={handleUser} name= "password"/>
-        <button onClick={submitForm}>Log In</button>
+    <div className="inputs"> 
+        <form >    
+        <input className="input-fields" type = "password" placeholder="password" value={userObject.password} onChange={handleUser} name= "password"/>
+        <button className="add-button" onClick={submitForm}>Log In</button>
         </form>   
     </div>
 );

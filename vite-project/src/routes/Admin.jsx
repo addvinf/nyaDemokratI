@@ -10,13 +10,22 @@ import { useContext } from "react";
 import ElectionAdmin from "../components/ElectionAdmin";
 import Header from "../components/Header"
 import { useAuth } from '../AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function Admin(props) {
     const { isAuthenticated, logout } = useAuth();
-    if (!isAuthenticated) {
-        return <div>You are not authorized to access this page.</div>;
+    const navigate = useNavigate();
+    function goToAdminLogin() {
+        navigate('/lockedadmin');
       }
-      
+    if (!isAuthenticated) {
+        return (<div>
+            <h1>You are not authorized to access this page.</h1>
+            <button className="add-button" onClick={goToAdminLogin}>Go to Admin Login</button>
+        </div>
+        )
+      }
+
     const addUser = useContext(UserListContext)
     //console.log(addUser)
     const [userObject, setUserObject] = useState({
