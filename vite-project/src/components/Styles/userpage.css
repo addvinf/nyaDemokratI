@@ -104,3 +104,14 @@ body {
     flex-direction: column;
     align-items: center;
 }
+
+.closed-election{
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-family: Poppins, sans-serif;
+    font-size: 17px;
+
+}

@@ -4,6 +4,7 @@ import LogInField from "./LogInField";
 import UserFinder from "../apis/UserFinder";
 import mats from "../Pictures/mats.jpg";
 import './Styles/userpage.css'
+import { useNavigate } from 'react-router-dom';
 
 export default function FullForm(props) {
 
@@ -11,6 +12,8 @@ export default function FullForm(props) {
     const [selectedCandidate, setSelectedCandidate] = useState(null);
     const [electionData, setElectionData] = useState(null);
     const [outputText, setOutputText] = useState(null);
+    const navigate = useNavigate();
+
     //console.log(email + " " + selectedCandidate);
 
     useEffect(() => {
@@ -36,6 +39,16 @@ export default function FullForm(props) {
         }
         return hash;
     }
+
+    function playRaceGame() {
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      
+        if (isMobile) {
+          window.location.href = './racegame_mobile.html';
+        } else {
+          window.location.href = './racegame.html';
+        }
+      }
     
     async function submitVote(event) {
         event.preventDefault(); // Prevent the default form submission behavior
@@ -92,9 +105,11 @@ export default function FullForm(props) {
                     />
                     <div className="submit-message">{outputText}</div>
                 </>
-            ) : <div>
-                 <p>Inget val öppet</p>
-                 <img className = "mats" src={mats} alt="" />
+            ) : <div className = "closed-election">
+                 <h1 className="">Inget val öppet</h1>
+                 {/*<img className = "mats" src={mats} alt="" />*/}
+                 <button className="vote-button" onClick={playRaceGame}>Spela RaceGame</button>
+                 
             </div>) : (
                 <p>Laddar valdata...</p>
             )}

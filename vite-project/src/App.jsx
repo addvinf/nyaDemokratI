@@ -22,7 +22,7 @@ function App() {
           <Route exact path="/lockedadmin" element={<LockedAdmin/>}/>
           <Route exact path="/unlockedadmin" element={<UnlockedAdmin/>}/>
           <Route exact path="/admin" element={<Admin/>}/>
-        </Routes>       
+        </Routes>
     </Router>
     </UserListProvider>
     
