@@ -8,6 +8,28 @@
     border-radius: 20px;
     position: relative;
 }
+
+.specific-user.online {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 40%; 
+    margin: 10px;
+    border-radius: 20px;
+    position: relative;
+}
+.specific-user.offline {
+    background-color: rgb(72, 69, 69);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 40%; 
+    margin: 10px;
+    border-radius: 20px;
+    position: relative;
+}
+
 .specific-user > img {
     width: 100px;
 }
@@ -18,7 +40,7 @@
     padding: 0;
     margin-left: 10px;
 }
-.specific-user > button {
+.delete-button {
     margin-right: 20px;
     width: 20px;
     height: 20px;
@@ -33,7 +55,7 @@
     
     
 }
-.specific-user > button:hover {
+.delete-button:hover {
     background-color: rgb(182, 1, 1);
     color: rgb(29, 14, 14);
     cursor: pointer;
@@ -152,4 +174,22 @@
 .top-form>h1{
     margin-left: 20px;
     margin-top: 20px;
+}
+.activate-button {
+    background-color: green;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    border: none;
+    border-radius: 20px;
+}
+.activate-button:hover {
+    background-color: rgb(0, 255, 0);
+    cursor: pointer;
+}
+.activate-button:active{
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
 }

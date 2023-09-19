@@ -18,7 +18,9 @@ export default function AdminForm(props) {
                 const response   = await UserFinder.post('/createUser', {
                     name: props.userObject.name,
                     email: props.userObject.email,
-                    hashed_email: 12346
+                    hashed_email: 12346,
+                    status: "online"
+
                 }) 
                 //console.log(response.data.data)
                 props.addUser.addUser(response.data.data.users)

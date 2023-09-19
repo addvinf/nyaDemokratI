@@ -49,7 +49,8 @@ export default function FullForm(props) {
                     email: email,
                     vote: selectedCandidate,
                 })
-                //console.log(response.data.status)
+                
+                console.log(response.data.status)
                 if (response.data.status === "success"){
 
                     setOutputText("Din röst på " + selectedCandidate + " har registrerats.");

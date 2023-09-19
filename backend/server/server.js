@@ -33,6 +33,21 @@ app.get('/getVoteResults', async (req, res) => {
     
 });
 
+//set user status to active
+app.put('/setUserStatus/:email', async (req, res) => {
+    try {
+        const result = await db.query("UPDATE users SET status = $1 WHERE email = $2 returning *", [req.body.status, req.params.email]);
+        res.status(200).json({
+            status: 'success',
+            data: {
+                users: result.rows[0]
+            }
+        })
+    }
+    catch (err) {
+        console.log(err);
+    }
+});
 
 
 //vote POST
@@ -41,7 +56,7 @@ app.post('/vote', async (req, res) => {
 
     try {
 
-        const userExist = await db.query("SELECT * FROM users WHERE email = $1", [req.body.email]);
+        const userExist = await db.query("SELECT * FROM users WHERE email = $1 AND status = 'online'", [req.body.email]);
 
         if (userExist.rows.length === 0) {
             res.status(201).json({

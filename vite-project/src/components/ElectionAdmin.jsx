@@ -12,7 +12,7 @@ export default function ElectionAdmin (props) {
                 <span>
                     <p>{candidate}</p>
                 </span>
-                <button onClick={() => deleteCandidate(candidate)}>X</button>
+                <button className="delete-button" onClick={() => deleteCandidate(candidate)}>X</button>
             </div>
         ));
     } 

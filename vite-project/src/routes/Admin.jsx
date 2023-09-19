@@ -17,6 +17,7 @@ export default function Admin(props) {
     const [userObject, setUserObject] = useState({
         name: "",
         email: "",
+        status: "offline"
     });
     const userList = addUser.userList
     const setUserList = addUser.setUserList
