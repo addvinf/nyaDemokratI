@@ -9,9 +9,14 @@ import { UserListContext } from "../context/UserListContext";
 import { useContext } from "react";
 import ElectionAdmin from "../components/ElectionAdmin";
 import Header from "../components/Header"
+import { useAuth } from '../AuthContext';
 
 export default function Admin(props) {
-    
+    const { isAuthenticated, logout } = useAuth();
+    if (!isAuthenticated) {
+        return <div>You are not authorized to access this page.</div>;
+      }
+      
     const addUser = useContext(UserListContext)
     //console.log(addUser)
     const [userObject, setUserObject] = useState({

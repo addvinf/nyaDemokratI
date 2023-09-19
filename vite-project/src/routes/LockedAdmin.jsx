@@ -29,7 +29,7 @@ export default function LockedAdmin(props) {
 
         hashString(userObject.password).then(hashedPassword => {
             login(hashedPassword); // Check password using login function from context
-            navigate('/unlockedadmin');
+            navigate('/admin');
           });
       }
 
