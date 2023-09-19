@@ -37,3 +37,8 @@ DELETE FROM votes;
 DROP TABLE votes;
 
 INSERT INTO votes (user_email, vote_option) SELECT $1, $2 WHERE EXISTS ( SELECT 1 FROM users WHERE email = $1);
+
+add column status to table users
+
+ALTER TABLE users ADD COLUMN status VARCHAR(50) NOT NULL DEFAULT 'offline';
+
