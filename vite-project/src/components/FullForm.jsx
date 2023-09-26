@@ -19,7 +19,7 @@ export default function FullForm(props) {
     useEffect(() => {
         (async () => {
             try {
-                const response = await UserFinder.get(  "/api/getElectionData");
+                const response = await UserFinder.get("/api/getElectionData");
                 //console.log(response.data.data.election_data);
                 setElectionData(response.data.data.election_data) //then add the blank candidate
                 
