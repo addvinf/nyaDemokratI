@@ -4,8 +4,6 @@ import mats from "../Pictures/0de09bdc-f601-4b67-bbbc-192519350292.avif"
 import { useAuth } from '../AuthContext';
 import { useNavigate } from 'react-router-dom';
 
-
-
 export async function hashString(input) {
     const encoder = new TextEncoder();
     const data = encoder.encode(input);

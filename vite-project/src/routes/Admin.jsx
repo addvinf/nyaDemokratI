@@ -18,13 +18,13 @@ export default function Admin(props) {
     function goToAdminLogin() {
         navigate('/lockedadmin');
       }
-    if (!isAuthenticated) {
+    /*if (!isAuthenticated) {
         return (<div>
             <h1>You are not authorized to access this page.</h1>
             <button className="add-button" onClick={goToAdminLogin}>Go to Admin Login</button>
         </div>
         )
-      }
+      }*/
 
     const addUser = useContext(UserListContext)
     //console.log(addUser)
