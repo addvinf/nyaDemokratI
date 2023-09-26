@@ -6,7 +6,7 @@ export default function Header(props) {
 
     return (
         <div className="css-header">
-            <h1 className="rubrik">DEMOkrat II</h1>
+            <h1 className="rubrik">DemokratII</h1>
             <img className="logo" src={mats} alt="Mats" />
 
         </div>
